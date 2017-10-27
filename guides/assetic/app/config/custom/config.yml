@@ -3,3 +3,9 @@ assetic:
     use_controller: '%kernel.debug%'
     filters:
         cssrewrite: ~
+
+    assets:
+        jquery_and_ui:
+            inputs:
+                - '@AppBundle/Resources/public/js/thirdparty/jquery.min.js'
+                - '@AppBundle/Resources/public/js/thirdparty/jquery.ui.min.js'

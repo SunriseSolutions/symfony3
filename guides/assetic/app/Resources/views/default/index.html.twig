@@ -23,7 +23,7 @@
                 http://symfony.com/doc/current/assetic/asset_management.html
                 </a>
                 <ol>
-                <li>Include alert.js that alert "Hello baby"</li>
+                <li>Include alert.js that alert "Hello baby" with Jquery + JqueryUI added under jquery_and_ui <strong>Named Asset</strong></li>
                 <li>Include the css that <span class="make-me-red">make this red</span></li>
                 </ol>
             </div>
@@ -33,10 +33,6 @@
 {% endblock %}
 
 {% block stylesheets %}
-
-{% stylesheets 'bundles/app/css/*' filter='cssrewrite' %}
-        <link rel="stylesheet" href="{{ asset_url }}" />
-{% endstylesheets %}
 
 <style>
     body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
@@ -64,9 +60,18 @@
         .sf-toolbar { opacity: 0; -webkit-animation: fade-in 1s .2s forwards; animation: fade-in 1s .2s forwards;}
     }
 </style>
-{% endblock %}
+
+{% stylesheets 'bundles/app/css/*' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}
+
+{% endblock stylesheets %}
+
 {% block javascripts %}
-    {% javascripts '@AppBundle/Resources/public/js/*' %}
+    {% javascripts 
+    '@AppBundle/Resources/public/js/*'
+    '@jquery_and_ui'
+     %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}
