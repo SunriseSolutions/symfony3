@@ -25,8 +25,24 @@
                 <ol>
                 <li>Include alert.js that alert "Hello baby" with Jquery + JqueryUI added under jquery_and_ui <strong>Named Asset</strong></li>
                 <li>Include the css that <span class="make-me-red">make this red</span></li>
+                <li>A more detailed guide about configuring and using Assetic filters as well as details of 
+                <br/>Assetic's debug mode can be found in <a href="http://symfony.com/doc/current/frontend/assetic/uglifyjs.html" target="_blank">
+                How to Minify CSS/JS Files (Using UglifyJS and UglifyCSS).</a> 
+                <ul>
+                    <li>UglifyJS to minify empty.js</li>
+                </ul>
+                </li>
+
                 </ol>
             </div>
+
+            <h3>TODO</h3>
+<strong>Filters</strong>
+<pre>
+
+</pre>
+
+
 
         </div>
     </div>
@@ -74,4 +90,9 @@
      %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
+
+    {% javascripts '@AppBundle/Resources/public/js/to-be-minified/*' filter='uglifyjs2' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
 {% endblock %}

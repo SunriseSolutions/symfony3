@@ -3,9 +3,13 @@ assetic:
     use_controller: '%kernel.debug%'
     filters:
         cssrewrite: ~
-
+# For example to use the UglifyJS JavaScript minifier the following configuration should be defined:
+        uglifyjs2:
+            bin:  ../app/Resources/node_modules/uglify-js/bin/uglifyjs
     assets:
         jquery_and_ui:
             inputs:
                 - '@AppBundle/Resources/public/js/thirdparty/jquery.min.js'
                 - '@AppBundle/Resources/public/js/thirdparty/jquery.ui.min.js'
+
+
