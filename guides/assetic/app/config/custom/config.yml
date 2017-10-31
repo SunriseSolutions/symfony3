@@ -4,8 +4,10 @@ assetic:
     filters:
         cssrewrite: ~
 # For example to use the UglifyJS JavaScript minifier the following configuration should be defined:
-        uglifyjs2:
+        uglifyjs:
             bin:  ../app/Resources/node_modules/uglify-js/bin/uglifyjs
+        uglifycss:
+            bin:  ../app/Resources/node_modules/uglifycss/uglifycss
     assets:
         jquery_and_ui:
             inputs:

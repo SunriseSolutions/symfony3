@@ -5,7 +5,7 @@
     <div id="wrapper">
         <div id="container">
             <div id="welcome">
-                <h1><span>Assetic</span> Symfony {{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</h1>
+                <h1><span><a href="http://symfony.com/doc/current/frontend/assetic.html" target="_blank">Assetic</a></span> Symfony {{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</h1>
             </div>
 
             <div id="status">
@@ -17,68 +17,90 @@
                 </p>
             </div>
 
-            <div id="next">
-                <h2>Install and Perform basic Tasks</h2>
+            <div id="install-perform-basic-tasks">
+                <h2>1) Install and Perform basic Tasks</h2>
                 <a href="http://symfony.com/doc/current/assetic/asset_management.html" target="_blank">
                 http://symfony.com/doc/current/assetic/asset_management.html
                 </a>
                 <ol>
-                <li>Include alert.js that alert "Hello baby" with Jquery + JqueryUI added under jquery_and_ui <strong>Named Asset</strong></li>
+                <li>Include alert.js that <button id="click-to-alert">alerts on click</button> "Hello baby" with Jquery + JqueryUI added under jquery_and_ui <strong>Named Asset</strong></li>
                 <li>Include the css that <span class="make-me-red">make this red</span></li>
                 <li>A more detailed guide about configuring and using Assetic filters as well as details of 
                 <br/>Assetic's debug mode can be found in <a href="http://symfony.com/doc/current/frontend/assetic/uglifyjs.html" target="_blank">
                 How to Minify CSS/JS Files (Using UglifyJS and UglifyCSS).</a> 
                 <ul>
                     <li>UglifyJS to minify empty.js</li>
+                    <li>The usage of UglifyCSS works the same way as UglifyJS. 
+                    <br/>
+                    First, make sure the node package is installed: 
+                    <br/>
+                     <code>npm install uglifycss --prefix app/Resources</code>
+                     </li>
                 </ul>
                 </li>
+                     <li><strong>Controlling the URL Used</strong> using something like <code>output='js/compiled/uglified.js'</code>
+                    </li>
 
+
+
+
+
+                <li><code>Symfony provides various cache busting implementations via the <strong>version, version_format and json_manifest_path</strong> configuration options.</code><br/>
+                    <a href="http://symfony.com/doc/current/reference/configuration/framework.html#reference-framework-assets-version" target="_blank">Framework Bundle Config # assets/version </a>
+                </li>
+                <li>
+                <strong>Dumping Asset Files in the dev Environment</strong>
+                By default, each asset path generated in the dev environment is handled dynamically by Symfony. 
+                If you feel like your assets are loading too slowly, follow this guide.
+                    <ol>
+                        <li>
+                            First, tell Symfony to stop trying to process these files dynamically. Make the following change in your  <strong>config_dev.yml</strong> file:
+                            <pre>
+                            # app/config/config_dev.yml
+                            assetic:
+                                use_controller: false
+                                </pre>
+                        </li>
+                        <li>
+                            Next, since Symfony is no longer generating these assets for you, you'll need to dump them manually. To do so, run the following command:
+                            <strong>php bin/console assetic:dump</strong>
+                        </li>
+                        <li>
+                            By using the assetic:watch command, assets will be regenerated automatically as they change:
+                            <strong>php bin/console assetic:watch</strong>
+                            The assetic:watch command was introduced in AsseticBundle 2.4. In prior versions, you had to use the --watch option of the assetic:dump command for the same behavior.    
+                        </li>
+                    </ol>
+                </li>
                 </ol>
+                </div>
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+            <div id="apply-an-assetic-filter-to-a-specific-file-ext">
+            <h2>2) How to Apply an Assetic Filter to a specific File Extension</h2>
+            <a href="http://symfony.com/doc/current/frontend/assetic/apply_to_option.html" target="_blank">http://symfony.com/doc/current/frontend/assetic/apply_to_option.html</a>
             </div>
-
-            <h3>TODO</h3>
-<strong>Filters</strong>
-<pre>
-
-</pre>
-
-
-
         </div>
     </div>
 {% endblock %}
 
 {% block stylesheets %}
 
-<style>
-    body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
-    h1, h2 { line-height: 1.2; margin: 0 0 .5em; }
-    h1 { font-size: 36px; }
-    h2 { font-size: 21px; margin-bottom: 1em; }
-    p { margin: 0 0 1em 0; }
-    a { color: #0000F0; }
-    a:hover { text-decoration: none; }
-    code { background: #F5F5F5; max-width: 100px; padding: 2px 6px; word-wrap: break-word; }
-    #wrapper { background: #FFF; margin: 1em auto; max-width: 800px; width: 95%; }
-    #container { padding: 2em; }
-    #welcome, #status { margin-bottom: 2em; }
-    #welcome h1 span { display: block; font-size: 75%; }
-    #icon-status, #icon-book { float: left; height: 64px; margin-right: 1em; margin-top: -4px; width: 64px; }
-    #icon-book { display: none; }
-
-    @media (min-width: 768px) {
-        #wrapper { width: 80%; margin: 2em auto; }
-        #icon-book { display: inline-block; }
-        #status a, #next a { display: block; }
-
-        @-webkit-keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
-        @keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
-        .sf-toolbar { opacity: 0; -webkit-animation: fade-in 1s .2s forwards; animation: fade-in 1s .2s forwards;}
-    }
-</style>
-
 {% stylesheets 'bundles/app/css/*' filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}
+
+
+{% stylesheets 'bundles/app/css/to-be-minified/*' filter='uglifycss' filter='cssrewrite' %}
+     <link rel="stylesheet" href="{{ asset_url }}" />
 {% endstylesheets %}
 
 {% endblock stylesheets %}
@@ -91,7 +113,7 @@
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
-    {% javascripts '@AppBundle/Resources/public/js/to-be-minified/*' filter='uglifyjs2' %}
+    {% javascripts '@AppBundle/Resources/public/js/to-be-minified/*' filter='uglifyjs' output='js/compiled/uglified.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
