@@ -3,11 +3,17 @@ assetic:
     use_controller: '%kernel.debug%'
     filters:
         cssrewrite: ~
+# For example to apply a filter to 1 ore more file extensions
+        coffee:
+            bin:        ../app/Resources/node_modules/coffeescript/bin/coffee
+            node:       node
+            node_paths: [../app/Resources/node_modules/]
+        
 # For example to use the UglifyJS JavaScript minifier the following configuration should be defined:
         uglifyjs:
-            bin:  ../app/Resources/node_modules/uglify-js/bin/uglifyjs
+            bin:  ../app/Resources/uglifyjs
         uglifycss:
-            bin:  ../app/Resources/node_modules/uglifycss/uglifycss
+            bin:  ../app/Resources/uglifycss
     assets:
         jquery_and_ui:
             inputs:
