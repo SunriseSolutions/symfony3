@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1><a href="http://symfony.com/doc/3.4/frontend.html#encore-documentation" target="_blank">Frontend with Encore</a>
+        - Symfony {{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</h1>
+
+    <h1>Webpack Encore</h1>
+    <p>Webpack Encore is a simpler way to integrate Webpack into your application. It wraps Webpack, giving you a clean
+        & powerful API for bundling JavaScript modules, pre-processing CSS & JS and compiling and minifying assets.
+        Encore gives you professional asset system that's a delight to use.
+    </p>
+    <p>
+        Encore is inspired by Webpacker and Mix, but stays in the spirit of Webpack: using its features, concepts and
+        naming conventions for a familiar feel. It aims to solve the most common Webpack use cases.
+    </p>
+    <h1>Encore Documentation</h1>
+    <h2>Getting Started</h2>
+    <ol>
+        <li>
+            <a href="http://symfony.com/doc/3.4/frontend/encore/installation.html" target="_blank">Installation</a>
+        </li>
+        <li>First Example</li>
+    </ol>
+    <h2>Adding more Features</h2>
+    <ol>
+        <li>CSS Preprocessors: Sass, LESS, etc</li>
+        <li>PostCSS and autoprefixing</li>
+        <li>Enabling React.js</li>
+        <li>Enabling Vue.js (vue-loader)</li>
+        <li>Configuring Babel</li>
+        <li>Source maps</li>
+        <li>Enabling TypeScript (ts-loader)</li>
+    </ol>
+
+    <h2>Optimizing</h2>
+    <ol>
+        <li>Versioning (and the manifest.json file)</li>
+        <li>Using A CDN</li>
+        <li>Creating a "Shared" entry for re-used modules</li>
+    </ol>
+
+    <h2>Guides</h2>
+    <ol>
+        <li>Using Bootstrap CSS & JS</li>
+        <li>Creating Page-Specific CSS/JS</li>
+        <li>jQuery and Legacy Applications</li>
+        <li>Passing Information from Twig to JavaScript</li>
+        <li>webpack-dev-server and Hot Module Replacement (HMR)</li>
+        <li>Adding custom loaders & plugins</li>
+        <li>Advanced Webpack Configuration</li>
+    </ol>
+    <h2>Issues & Questions</h2>
+    <ol>
+        <li>FAQ & Common Issues</li>
+        <li>Encore Versus Assetic?</li>
+    </ol>
+
+    <h2>Full API</h2>
+    <ol>
+        <li>Full API: https://github.com/symfony/webpack-encore/blob/master/index.js</li>
+    </ol>
+
+    <h2>Assetic</h2>
+    <p>Assetic is a pure PHP library that helps to process & optimize your assets (similar to Encore). Even though we
+        recommend using Encore, Assetic still works great. For a comparison, see <a
+                href="http://symfony.com/doc/3.4/frontend/encore/versus-assetic.html" target="_blank">Encore Versus
+            Assetic?.</a>
+    </p>
+    For more about Assetic, see Assetic.
+
+    <h2>Other Front-End Articles</h2>
+    <a href="http://symfony.com/doc/3.4/frontend/assetic.html" target="_blank">Assetic</a>
+    <a href="http://symfony.com/doc/3.4/frontend/custom_version_strategy.html" target="_blank">How to Use a Custom
+        Version Strategy for Assets</a>
+{% endblock %}
+{% block javascripts %}{% endblock %}
+{% block stylesheets %}{% endblock %}
